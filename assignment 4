@@ -1,0 +1,115 @@
+#include <iostream>
+
+using namespace std;
+
+
+float area(float);  
+float area(float,float);
+
+float area(float r)
+{
+    return (3.14*r*r);
+};
+float area(float b,float h)
+{
+    return (0.5*b*h);
+};
+inline int square(int num)
+{
+    return num*num;
+};
+inline int cube(int num)
+{
+    return num*num*num;
+};
+class student 
+{
+    protected:
+    int roll_number;
+    public:
+    void get_number(int a)
+    {
+        roll_number=a;
+    }
+
+    void display_roll()
+    {
+        cout<<"Roll No:"<<roll_number<<"\n";
+    }
+};
+
+
+class test : virtual public student 
+{
+    protected : 
+    float part1;float part2;
+    public:
+    void get_marks(float x,float y)
+    {
+        part1=x;
+        part2=y;
+    }
+    void display_marks(void)
+    {
+        cout<<"Marks Obtained :"<<"\n"
+            <<"Part 1 = "<<part1<<"\n"
+            <<"Part 2 = "<<part2<<"\n";
+    }
+};
+class sports : public virtual student
+{
+    protected:
+    float score;
+    public:
+    void get_score(float s)
+    {
+        score=s;
+    };
+    void display_score(void)
+    {
+        cout<<"Sports wt :"<<score<<"\n\n";
+    };
+};
+class result : public test,public sports 
+{
+    float total;
+    public:
+    void display()
+{
+    total=part1+part2+score;
+    display_roll();
+    display_marks();
+    display_score();
+    cout<<"Total Score :"<<total<<"\n";
+}
+};
+
+int main()
+{
+    float circle=area(3.595);
+    float triangle=area(4.56,8.92);
+
+    cout<<"area of circle is :\n"<<circle<<endl;
+    cout<<"area of triangle is : \n"<<triangle<<endl;
+    
+    result student_1;
+    student_1.get_number(1122);
+    student_1.get_marks(30.5,25.5);
+    student_1.get_score(7.0);
+    student_1.display();
+
+    cout<<"\ninline function"<<endl;
+    int num;
+    cout<<"input a number\n";
+    cin>>num;
+    cout<<"square of the number is "<<square(num)<<endl;
+    cout<<"cube of the number is "<<cube(num)<<endl;
+    
+    cout<<"manipulation of pointers\n"<<endl;
+    int a=10;
+    int *ptr;
+    ptr=&a;
+    cout<<"the value of a is :"<<*ptr<<endl;
+    *ptr=*ptr+a;
+    cout<<"\nthe revised value of a is: "<<a;
+    return 0;
